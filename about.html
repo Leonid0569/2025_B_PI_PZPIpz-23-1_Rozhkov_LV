@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Про нас</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header,
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1em 0;
+        }
+
+        nav ul {
+            padding: 0;
+            list-style: none;
+        }
+
+        nav li {
+            display: inline;
+            margin: 0 10px;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #4CAF50;
+        }
+
+        main {
+            padding: 20px;
+            min-height: 600px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            margin: 20px auto;
+            max-width: 80%;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        main h2 {
+            color: #333;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 0.5em;
+            margin-bottom: 1em;
+        }
+
+        main p {
+            margin-bottom: 1.2em;
+            text-align: justify;
+            text-indent: 1.5em;
+        }
+
+        main ul {
+            list-style-type: disc;
+            margin-left: 2em;
+            margin-bottom: 1em;
+        }
+
+        .company-values {
+            margin-top: 2em;
+            text-align: center;
+        }
+
+        .company-values h3 {
+            color: #555;
+            margin-bottom: 0.8em;
+        }
+
+        .company-values ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .company-values li {
+            background-color: #f9f9f9;
+            border: 1px solid #eee;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .company-values li:hover {
+            background-color: #e0e0e0;
+            transform: scale(1.05);
+        }
+
+        .company-values li.active {
+            background-color: #d0ffd0;
+        }
+
+        #value-description {
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            background-color: #f9f9f9;
+            text-align: justify;
+            text-indent: 1.5em;
+            border-radius: 5px;
+        }
+
+        .history {
+            margin-top: 2em;
+            text-align: center;
+        }
+
+        .map-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        footer {
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            padding: 1em 0;
+            margin-top: 20px;
+        }
+
+        /* Basic responsive design */
+        @media (max-width: 768px) {
+            nav li {
+                display: block;
+                margin: 10px 0;
+            }
+
+            main {
+                max-width: 95%;
+            }
+
+            .company-values ul {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+    <script>
+        function showValueDescription(value) {
+            let description = "";
+            switch (value) {
+                case "Якість":
+                    description = "Ми прагнемо до найвищих стандартів якості у всьому, що ми робимо. Від вибору матеріалів до виробничого процесу, ми приділяємо увагу кожній деталі, щоб забезпечити надійність та довговічність нашої продукції.";
+                    break;
+                case "Надійність":
+                    description = "Наша техніка розроблена для тривалої та безперебійної роботи. Ми використовуємо перевірені технології та компоненти, щоб ви могли бути впевнені у нашій продукції в будь-якій ситуації.";
+                    break;
+                case "Інновації":
+                    description = "Ми постійно впроваджуємо новітні технології та розробки, щоб наша техніка відповідала найсучаснішим вимогам. Ми прагнемо бути лідерами у своїй галузі, пропонуючи вам передові рішення.";
+                    break;
+                case "Екологічність":
+                    description = "Ми дбаємо про навколишнє середовище, використовуючи екологічно чисті матеріали та енергоефективні технології. Наша мета - зменшити вплив на довкілля та зробити нашу продукцію максимально безпечною для вас та природи.";
+                    break;
+                default:
+                    description = "Оберіть цінність, щоб побачити її опис.";
+            }
+
+            document.getElementById("value-description").innerText = description;
+
+            // Зняття класу 'active' з усіх кнопок
+            let buttons = document.querySelectorAll('.company-values li');
+            buttons.forEach(button => button.classList.remove('active'));
+
+            // Додавання класу 'active' до натиснутої кнопки
+            let activeButton = Array.from(buttons).find(button => button.innerText === value);
+            if (activeButton) {
+                activeButton.classList.add('active');
+            }
+        }
+    </script>
+</head>
+
+<body>
+<header>
+    <h1>Про нас</h1>
+    <nav>
+        <ul>
+            <li><a href="index.html">Головна</a></li>
+            <li><a href="contact.html">Контакти</a></li>
+        </ul>
+    </nav>
+</header>
+<main>
+    <h2>Про компанію</h2>
+    <p>Ми – український виробник побутової техніки, що народився в серці індустріального Харкова. Заснована у 2025 році, наша компанія пройшла шлях від невеликої
+        майстерні до сучасного виробничого комплексу, зберігаючи вірність традиціям якості та інновацій.</p>
+    <p>Ми пишаємося тим, що наша техніка створюється в Україні, для українських родин. Враховуючи потреби та побажання наших клієнтів, ми розробляємо надійні,
+        функціональні та економічні прилади, які роблять життя комфортнішим.</p>
+    <p>Ми – це не просто техніка, це частина вашого дому. Ми прагнемо, щоб кожен наш продукт приносив задоволення та користь, допомагаючи вам створювати затишок та
+        гармонію у вашому житті.</p>
+
+    <div class="company-values">
+        <h3>Наші цінності:</h3>
+        <ul>
+            <li onclick="showValueDescription('Якість')">Якість</li>
+            <li onclick="showValueDescription('Надійність')">Надійність</li>
+            <li onclick="showValueDescription('Інновації')">Інновації</li>
+            <li onclick="showValueDescription('Екологічність')">Екологічність</li>
+        </ul>
+    </div>
+
+    <p>Ми віримо, що техніка має бути не тільки функціональною, але й безпечною для довкілля. Тому ми використовуємо екологічно чисті матеріали та
+        енергоефективні технології у виробництві нашої продукції.</p>
+    <p>Обираючи нас, ви обираєте якість, перевірену часом, та підтримку українського виробника. Разом ми будуємо майбутнє, де кожна родина має доступ до сучасної та
+        надійної побутової техніки.</p>
+
+    <div id="value-description">Оберіть цінність, щоб побачити її опис.</div>
+
+    <div class="history">
+        <h3>Історія компанії</h3>
+        <p>У 2025 році, після відновлення Харкова, група ентузіастів вирішила створити компанію, яка б відродила традиції українського виробництва. Вони почали з
+            невеликої майстерні, де виготовляли побутову техніку з урахуванням потреб місцевих жителів. Завдяки інноваційним технологіям та екологічним підходам,
+            компанія швидко здобула популярність.</p>
+        <p>Протягом наступних років, компанія розширила свій асортимент, впроваджуючи нові моделі техніки, які відповідали сучасним вимогам. У 2030 році, завдяки
+            зусиллям команди, компанія стала лідером на ринку побутової техніки в Україні, а її продукція експортувалася до багатьох країн світу.</p>
+    </div>
+
+    <div class="map-container">
+        <h3>Наше місцезнаходження</h3>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2561.123456789012!2d36.229123!3d49.993500!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40e0b1f1f1f1f1f1%3A0x1234567890abcdef!2z0JrQu9C70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC        </iframe>
+    </div>
+</main>
+<footer>
+    <p>&copy; 2025 Наша компанія. Всі права захищені.</p>
+    <p>Контакти: <a href="mailto:info@company.com">info@company.com</a></p>
+        </footer>
+</body>
+
+</html>

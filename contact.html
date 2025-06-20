@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Контакти</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: #fff;
+            text-align: center;
+            padding: 1em 0;
+        }
+
+        nav ul {
+            padding: 0;
+            list-style: none;
+        }
+
+        nav li {
+            display: inline;
+            margin: 0 10px;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        main {
+            padding: 20px;
+            min-height: 600px;
+        }
+
+        .contact-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .contact-info,
+        .contact-form {
+            width: 45%;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-info h2,
+        .contact-form h2 {
+            color: #4CAF50;
+        }
+
+        .contact-info ul {
+            padding: 0;
+            list-style: none;
+        }
+
+        .contact-info li {
+            margin: 10px 0;
+        }
+
+        .contact-form input[type="text"],
+        .contact-form input[type="email"],
+        .contact-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            transition: border-color 0.3s;
+        }
+
+        .contact-form input[type="text"]:focus,
+        .contact-form input[type="email"]:focus,
+        .contact-form textarea:focus {
+            border-color: #4CAF50;
+            outline: none;
+        }
+
+        .contact-form button {
+            background-color: #5cb85c;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .contact-form button:hover {
+            background-color: #4cae4c;
+            transform: scale(1.05);
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1em 0;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            nav li {
+                display: block;
+                margin: 10px 0;
+            }
+
+            .contact-container {
+                flex-direction: column;
+            }
+
+            .contact-info,
+            .contact-form {
+                width: 100%;
+            }
+        }
+
+        /* Google Maps */
+        .map-container {
+            width: 100%;
+            height: 400px;
+            margin-top: 20px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* Social Media Icons */
+        .social-icons {
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            margin: 0 10px;
+            color: #4CAF50;
+            font-size: 24px;
+            transition: color 0.3s;
+        }
+
+        .social-icons a:hover {
+            color: #333;
+        }
+    </style>
+</head>
+
+<body>
+<header>
+    <h1>Контакти</h1>
+    <nav>
+        <ul>
+            <li><a href="index.html">Головна</a></li>
+            <li><a href="about.html">Про нас</a></li>
+        </ul>
+    </nav>
+</header>
+<main>
+    <div class="contact-container">
+        <div class="contact-info">
+            <h2>Контактна інформація</h2>
+            <ul>
+                <li><i class="fas fa-phone"></i> 093 302 0138</li>
+                <li><i class="fas fa-envelope"></i> info@example.com</li>
+                <li><i class="fas fa-map-marker-alt"></i> Харків, Україна</li>
+                <li><i class="fas fa-clock"></i> Години роботи: з 09:00 до 18:00 по буднях</li>
+                <li><i class="fas fa-clock"></i> Субота, неділя, святкові дні - вихідні</li>
+            </ul>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+
+        <div class="contact-form">
+            <h2>Контактна форма</h2>
+            <form id="contactForm" onsubmit="return handleSubmit(event)">
+                <label for="name">Ваше ім'я:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="email">Ваш Email:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="phone">Ваш номер телефону:</label>
+                <input type="text" id="phone" name="phone" placeholder="093 302 0138" required>
+
+                <label for="message">Повідомлення:</label>
+                <textarea id="message" name="message" rows="4" required></textarea>
+
+                <button type="submit">Надіслати</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="map-container">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2561.123456789012!2d36.229123!3d49.993500!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40e0b1f1f1f1f1f1%3A0x1234567890abcdef!2z0JrQu9C70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70YzQutC-0L3QvtC70Yz
+        </div> <!-- Закриття map-container -->
+
+        <footer>
+            <p>&copy; 2025 Ваша компанія. Всі права захищені.</p>
+        </footer>
+    </main> <!-- Закриття main -->
+
+    <script>
+        async function handleSubmit(event) {
+            event.preventDefault(); // Запобігаємо стандартному відправленню форми
+
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const message = document.getElementById('message').value;
+
+            // Створення об'єкта з даними форми
+            const formData = {
+                name,
+                email,
+                phone,
+                message
+            };
+
+            try {
+                // Надсилання даних на сервер
+                const response = await fetch('/api/contact', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData),
+                });
+
+                if (!response.ok) {
+                    throw new Error('Помилка при надсиланні даних');
+                }
+
+                const data = await response.json();
+                alert(`Дякуємо, ${name}! Ваш запит на зворотний дзвінок надіслано. Ми зв'яжемося з вами найближчим часом.`);
+            } catch (error) {
+                console.error('Помилка:', error);
+                alert('На жаль, сталася помилка. Спробуйте ще раз пізніше.');
+            }
+
+            // Очищення полів форми
+            document.getElementById('contactForm').reset();
+        }
+    </script>
+</body>
+</html>

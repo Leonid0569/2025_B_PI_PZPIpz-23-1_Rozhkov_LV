@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Інтернет магазин встроїної кухонної техніки</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            color: #333;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .guarantee {
+            cursor: pointer;
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #ff9800;
+            color: white;
+            border-radius: 5px;
+            margin: 20px 0;
+            text-align: center;
+            transition: background-color 0.3s;
+        }
+
+        .guarantee:hover {
+            background-color: #e68a00;
+        }
+
+        .info-banner {
+            background-color: #4CAF50;
+            padding: 15px;
+            text-align: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        .logo-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .logo-list {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+
+        .logo-item {
+            position: relative;
+            margin: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            overflow: hidden;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            width: 150px;
+            height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .remove-logo {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: red;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            text-align: center;
+            line-height: 20px;
+            font-size: 14px;
+        }
+
+        .categories {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .category {
+            margin: 10px;
+            padding: 20px;
+            text-align: center;
+            color: #333;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #ffffff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .category:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .features, .reviews, .faq, .calculator, .contact-form, .newsletter {
+            margin: 20px;
+            padding: 20px;
+            border: 1px solid #888;
+            border-radius: 5px;
+            background-color: #ffffff;
+            color: #333;
+        }
+
+        footer {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .scroll-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px;
+            cursor: pointer;
+            display: none;
+            transition: opacity 0.3s ease;
+        }
+
+        /* Стиль для модальних вікон */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+
+        /* Адаптивні стилі */
+        @media (max-width: 768px) {
+            .categories {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        .faq-item {
+            margin: 15px 0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            transition: background-color 0.3s;
+        }
+
+        .faq-item:hover {
+            background-color: #e9e9e9;
+        }
+
+        .faq-question {
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .faq-answer {
+            display: none;
+            margin-top: 10px;
+        }
+
+        .faq-question:hover {
+            text-decoration: underline;
+        }
+
+        .calculator, .contact-form {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-form textarea {
+            width: 100%;
+            height: 100px;
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .contact-form button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .contact-form button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1>Магазин вбудованої кухонної техніки</h1>
+    <nav>
+        <ul id="menu">
+            <li><a href="about.html">Про нас</a></li>
+            <li><a href="contact.html">Контакти</a></li>
+            <li><a href="admin.html">Адмін</a></li>
+            <li><a href="#" id="registerBtn" class="register-button" style="background-color: #4CAF50; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none;">Реєстрація</a></li>
+        </ul>
+    </nav>
+</header>
+
+<div class="info-banner">
+    БЕЗКОШТОВНА ДОСТАВКА ДО ВАШОГО ВІДДІЛЕННЯ НОВОЇ ПОШТИ!!
+</div>
+
+<div class="guarantee" id="guaranteeBtn">
+    24 місяці гарантії
+</div>
+
+<!-- Банер гарантії -->
+<div class="guarantee-banner" id="guaranteeBanner" style="display: none;">
+    <p>   На всю продукцію надається 24 місяці гарантії, що свідчить про нашу впевненість у якості та надійності товарів, які ми пропонуємо.
+        Гарантія охоплює всі виробничі дефекти та несправності, які можуть виникнути в процесі нормального використання техніки.
+        Це означає, що якщо ви зіткнетеся з будь-якою проблемою, пов'язаною з функціонуванням вашого пристрою, ви можете звернутися до нас для отримання безкоштовного ремонту або заміни.
+
+        Для отримання гарантійного обслуговування вам потрібно зберігати чек або документ, що підтверджує покупку, а також заповнити гарантійний талон, який ви отримали разом з товаром.
+        Ви можете отримати гарантійне обслуговування в наших сервісних центрах, які розташовані в різних містах України.
+        Наші сервісні центри обладнані сучасним устаткуванням, а наші кваліфіковані фахівці швидко і професійно вирішать будь-які проблеми, що виникають, щоб ви могли знову насолоджуватися роботою вашої техніки.
+
+        Ми також пропонуємо можливість звернення до нашої служби підтримки, де ви можете отримати консультації щодо використання продукції, а також дізнатися про умови гарантійного обслуговування.
+        Наша команда завжди готова допомогти вам і надати всю необхідну інформацію, щоб ви могли максимально ефективно використовувати вашу техніку.
+
+        Якщо у вас виникнуть питання щодо гарантійних умов або ви хочете дізнатися більше про наші сервісні центри, будь ласка, звертайтеся до нашої служби підтримки.
+        Ми прагнемо забезпечити наших клієнтів не лише якісною продукцією, але й надійним сервісом, щоб ви могли бути впевнені у своєму виборі.</p>
+</div>
+
+<div class="logo-container">
+    <h2>Логотипи компаній</h2>
+    <div class="logo-list" id="logoList">
+        <!-- Логотипи будуть додаватися тут -->
+    </div>
+    <button id="addLogoBtn" class="add-logo-button">Додати логотип</button> <!-- Кнопка "Додати логотип" -->
+</div>
+
+<main>
+    <section class="banner">
+        <h1>Гарантія на всю продукцію</h1>
+    </section>
+
+    <section class="categories">
+        <div class="category">
+            <a href="project-root/products/ovens/ovens.html" style="color: #333;">
+                <h3>Духові шафи</h3>
+            </a>
+        </div>
+        <div class="category">
+            <a href="project-root/products/cooktops/cooktops.html" style="color: #333;">
+                <h3>Варильні поверхні</h3>
+            </a>
+        </div>
+        <div class="category">
+            <a href="project-root/products/extractors/extractors.html" style="color: #333;">
+                <h3>Витяжки</h3>
+            </a>
+        </div>
+        <div class="category">
+            <a href="project-root/products/microwaves/microwaves.html" style="color: #333;">
+                <h3>Мікрохвильові печі</h3>
+            </a>
+        </div>
+        <div class="category">
+            <a href="project-root/products/dishwashers/dishwashers.html" style="color: #333;">
+                <h3>Посудомийні машини</h3>
+            </a>
+        </div>
+        <div class="category">
+            <a href="project-root/products/washing-machines/washing-machines.html" style="color: #333;">
+                <h3>Пральні машини</h3>
+            </a>
+        </div>
+        <div class="category">
+            <a href="project-root/products/sinks/sinks.html" style="color: #333;">
+                <h3>Мийки</h3>
+            </a>
+        </div>
+        <div class="category">
+            <a href="project-root/products/blenders/blenders.html" style="color: #333;">
+                <h3>Змішувачі</h3>
+            </a>
+        </div>
+        <div class="category">
+            <a href="project-root/products/freezers/freezers.html" style="color: #333;">
+                <h3>Морозильні камери</h3>
+            </a>
+        </div>
+        <div class="category">
+            <a href="project-root/products/refrigerators/refrigerators.html" style="color: #333;">
+                <h3>Холодильники</h3>
+            </a>
+        </div>
+        <div class="category">
+            <a href="project-root/products/kitchen-cabinets/kitchen-cabinets.html" style="color: #333;">
+                <h3>Шафи для підігріву посуду</h3>
+            </a>
+        </div>
+        <div class="category">
+            <a href="project-root/products/food-processors/food-processors.html" style="color: #333;">
+                <h3>Подрібнювачі харчових відходів</h3>
+            </a>
+        </div>
+    </section>
+
+    <section class="features">
+        <h2><a href="advantages.html" style="color: #333;">Переваги нашої продукції</a></h2>
+        <div class="faq-item">
+            <h3 class="faq-question" onclick="toggleAnswer(this)">Розроблено під потреби українців</h3>
+            <p class="faq-answer">   При розробці техніки команда інженерів керується переважно потребами українців, що є ключовим аспектом нашої філософії.
+                Ми розуміємо, що українці мають свої унікальні кулінарні традиції та звички, які суттєво впливають на вибір кухонної техніки.
+                Наприклад, в Україні часто готують страви, які потребують тривалого приготування, використання свіжих інгредієнтів та різноманітних методів приготування.
+                Тому наша техніка розроблена з урахуванням цих особливостей, щоб забезпечити максимальну зручність і ефективність у процесі приготування їжі.
+
+                У той час як європейці не властиво часто готувати їжу вдома, їх критерії у виборі кухонної техніки можуть бути дещо відрізняються.
+                Наприклад, європейські споживачі можуть надавати перевагу компактним і універсальним пристроям, які займають менше місця на кухні, оскільки вони частіше користуються готовими стравами або замовляють їжу з ресторанів.
+                Наша команда враховує ці відмінності, щоб створити продукцію, яка відповідає потребам українського ринку, забезпечуючи при цьому високу якість та надійність.
+
+                Ми активно проводимо дослідження та опитування серед наших споживачів, щоб зрозуміти їхні вподобання та очікування.
+                Це дозволяє нам постійно вдосконалювати нашу продукцію, впроваджувати нові технології та функції, які роблять приготування їжі більш приємним і ефективним.
+                Наша мета – створити техніку, яка не лише відповідає сучасним вимогам, але й підтримує українські кулінарні традиції, роблячи їх доступними для кожного. </p>
+        </div>
+        <div class="faq-item">
+            <h3 class="faq-question" onclick="toggleAnswer(this)">Економія до 30% на комунальних послугах</h3>
+            <p class="faq-answer">  Для духових шаф була розроблена інноваційна органічна подушка, яка знижує витік тепла, дозволяючи тим самим зменшити їх енергоспоживання.
+                Ця технологія є результатом ретельних досліджень і розробок, спрямованих на підвищення енергоефективності побутової техніки.
+                Органічна подушка виготовлена з екологічно чистих матеріалів, які не лише забезпечують відмінну теплоізоляцію, але й є безпечними для здоров'я користувачів.
+
+                Завдяки цій подушці, духові шафи здатні підтримувати стабільну температуру всередині, що дозволяє їм працювати більш ефективно.
+                Це означає, що ви зможете досягати бажаних результатів приготування їжі швидше, використовуючи менше енергії.
+                Зменшення витрат на електроенергію не лише позитивно вплине на ваш бюджет, але й зменшить вуглецевий слід, що робить вашу кухню більш екологічною.
+
+                Крім того, органічна подушка допомагає зберігати тепло під час приготування, що дозволяє зменшити час, необхідний для розігріву духовки.
+                Це особливо корисно для тих, хто часто готує, адже економія часу та енергії стає важливим фактором у повсякденному житті.
+                Ми прагнемо забезпечити наших клієнтів не лише якісною продукцією, але й технологіями, які відповідають сучасним вимогам енергоефективності та екологічності.
+
+                Вибираючи нашу духовку з органічною подушкою, ви робите крок до більш розумного та відповідального використання ресурсів, що позитивно вплине на ваше життя та навколишнє середовище.</p>
+        </div>
+        <div class="faq-item">
+            <h3 class="faq-question" onclick="toggleAnswer(this)">Безпека і надійність</h3>
+            <p class="faq-answer">   Побутова техніка надійно захищена від однієї з основних причин поломки електроприладів: перепадів напруги в електромережі.
+                Це досягається завдяки використанню сучасних технологій і компонентів, які забезпечують стабільну роботу пристроїв навіть у випадках, коли електрична напруга коливається.
+                Наприклад, вбудовані захисні механізми, такі як стабілізатори напруги та запобіжники, автоматично реагують на зміни в електромережі, запобігаючи можливим пошкодженням.
+
+                Цей захист особливо важливий для техніки, яка працює з високими навантаженнями, як-от пральні машини, холодильники та духові шафи.
+                Перепади напруги можуть призвести до перегріву, короткого замикання або навіть виходу з ладу електронних компонентів, що може бути дуже дорогим для ремонту.
+                Завдяки нашій технології, ви можете бути впевнені, що ваша техніка прослужить довше і працюватиме надійно, навіть у складних умовах експлуатації.
+
+                Крім того, ми рекомендуємо використовувати додаткові засоби захисту, такі як стабілізатори напруги, особливо в регіонах, де електропостачання нестабільне.
+                Це допоможе ще більше знизити ризик поломок і забезпечить безперебійну роботу вашої побутової техніки.
+                Ми прагнемо забезпечити наших клієнтів не лише якісною продукцією, але й спокійним використанням, знаючи, що ваша техніка захищена від несприятливих умов.</p>
+        </div>
+    </section>
+
+    <section class="reviews">
+        <h2><a href="reviews.html" style="color: #333;">Відгуки наших клієнтів</a></h2>
+        <div class="faq-item">
+            <h3 class="faq-question" onclick="toggleAnswer(this)">Олександр</h3>
+            <p class="faq-answer">" Чудова техніка! Дуже задоволений покупкою! Я придбав цю техніку кілька тижнів тому, і вона вже встигла довести свою ефективність.
+                Вона працює бездоганно, і я вражений її продуктивністю. Всі функції, які я шукав, реалізовані на високому рівні, і я відчуваю, що отримав відмінну цінність за свої гроші.
+
+                Особливо мені подобається, як легко користуватися всіма режимами. Інтерфейс зрозумілий і інтуїтивно зрозумілий, що дозволяє мені швидко налаштовувати потрібні параметри без зайвих зусиль.
+                Я також оцінив якість матеріалів – все виглядає дуже надійно і стильно, що додає естетики моїй кухні.
+
+                Ще один важливий момент – це енергоефективність. Я помітив, що витрати на електроенергію зменшилися, що є великим плюсом для мого бюджету.
+                Я рекомендую цю техніку всім, хто шукає надійний і функціональний пристрій для свого дому.
+                Вона дійсно виправдала всі мої очікування, і я з нетерпінням чекаю, щоб дізнатися, які ще можливості вона може запропонувати в майбутньому!"</p>
+        </div>
+        <div class="faq-item">
+            <h3 class="faq-question" onclick="toggleAnswer(this)">Марія</h3>
+            <p class="faq-answer">" Витяжка працює бездоганно, рекомендую! Я придбав цю витяжку кілька місяців тому, і вона перевершила всі мої очікування.
+                Вона ефективно видаляє запахи та дим під час приготування їжі, що робить кухню значно комфортнішою.
+                Я особливо вражений її потужністю – навіть при максимальному режимі роботи вона працює тихо, що є великим плюсом, адже не заважає спілкуванню з родиною під час приготування їжі.
+
+                Дизайн витяжки також заслуговує на похвалу: вона стильно виглядає в моїй кухні і легко вписується в інтер'єр.
+                Я також оцінив простоту установки – інструкція була зрозумілою, і я зміг встановити витяжку самостійно без жодних проблем.
+
+                Ще один важливий аспект – це легкість у догляді. Фільтри легко знімати і мити, що значно спрощує обслуговування.
+                Я рекомендую цю витяжку всім, хто шукає надійний і ефективний пристрій для кухні.
+                Вона дійсно варта своїх грошей!" </p>
+        </div>
+    </section>
+
+    <section class="faq">
+        <h2>Часто задавані питання</h2>
+        <div class="faq-item">
+            <h3 class="faq-question" onclick="toggleAnswer(this)"> Яка гарантія на продукцію?</h3>
+            <p class="faq-answer">  На всю продукцію надається 24 місяці гарантії, що свідчить про нашу впевненість у якості та надійності товарів, які ми пропонуємо.
+                Гарантія охоплює всі виробничі дефекти та несправності, які можуть виникнути в процесі нормального використання техніки.
+                Це означає, що якщо ви зіткнетеся з будь-якою проблемою, пов'язаною з функціонуванням вашого пристрою, ви можете звернутися до нас для отримання безкоштовного ремонту або заміни.
+
+                Для отримання гарантійного обслуговування вам потрібно зберігати чек або документ, що підтверджує покупку, а також заповнити гарантійний талон, який ви отримали разом з товаром.
+                Ви можете отримати гарантійне обслуговування в наших сервісних центрах, які розташовані в різних містах України.
+                Наші кваліфіковані фахівці швидко і професійно вирішать будь-які проблеми, що виникають, щоб ви могли знову насолоджуватися роботою вашої техніки.
+
+                Якщо у вас виникнуть питання щодо гарантійних умов або ви хочете дізнатися більше про наші сервісні центри, будь ласка, звертайтеся до нашої служби підтримки.
+                Ми завжди готові допомогти вам і надати всю необхідну інформацію!</p>
+        </div>
+        <div class="faq-item">
+            <h3 class="faq-question" onclick="toggleAnswer(this)">Чи є безкоштовна доставка?</h3>
+            <p class="faq-answer"> Так, ми пропонуємо безкоштовну доставку до відділення Нової Пошти. Це означає, що ви можете замовити будь-який товар з нашого асортименту без додаткових витрат на доставку, якщо оберете доставку до найближчого відділення Нової Пошти.
+                Ми прагнемо забезпечити максимальний комфорт для наших клієнтів, тому безкоштовна доставка є частиною нашої політики обслуговування.
+                Після оформлення замовлення, ви отримаєте підтвердження на електронну пошту з усіма деталями, включаючи номер накладної, за яким ви зможете відстежувати статус доставки.
+                Зазвичай, доставка займає від 1 до 3 робочих днів, залежно від вашого місцезнаходження.
+                Якщо у вас виникнуть будь-які питання щодо доставки або ви хочете дізнатися більше про наші послуги, не соромтеся звертатися до нашої служби підтримки, і ми з радістю вам допоможемо!</p>
+        </div>
+    </section>
+
+    <section class="calculator">
+        <h2>Калькулятор вартості доставки</h2>
+        <label for="carrier">Виберіть перевізника:</label>
+        <select id="carrier">
+            <option value="">Оберіть перевізника</option>
+            <option value="nova-poshta">Нова Пошта</option>
+            <option value="ukrposhta">Укрпошта</option>
+            <option value="meest">Meest</option>
+            <option value="delivery">Delivery</option>
+        </select>
+        <br>
+        <label for="weight">Вага (кг):</label>
+        <input type="number" id="weight" placeholder="Вага (кг)" required>
+        <button onclick="calculateShipping()">Розрахувати</button>
+        <p id="shipping-cost"></p>
+    </section>
+
+    <section class="contact-form">
+        <h2>Залиште свій відгук</h2>
+        <form id="registrationForm">
+            <input type="text" placeholder="Ваше ім'я" required>
+            <input type="email" placeholder="Ваш email" required>
+            <textarea placeholder="Ваш відгук" required></textarea>
+            <button type="submit">Залишити відгук</button>
+        </form>
+    </section>
+
+    <section class="newsletter">
+        <h2>Підпишіться на новини</h2>
+        <input type="email" placeholder="Ваш email" required>
+        <button>Підписатися</button>
+    </section>
+</main>
+
+<!-- Модальне вікно для реєстрації -->
+<div id="registrationModal" class="modal">
+    <div class="modal-content">
+        <span class="close" id="closeModal">&times;</span>
+        <h2>Реєстрація</h2>
+        <form id="registrationFormModal">
+            <input type="text" id="regName" placeholder="Ваше ім'я" required>
+            <input type="email" id="regEmail" placeholder="Ваш email" required>
+            <input type="password" id="regPassword" placeholder="Пароль" required>
+            <button type="submit">Зареєструватися</button>
+        </form>
+    </div>
+</div>
+
+<!-- Модальне вікно для додавання логотипу -->
+<div id="logoModal" class="modal">
+    <div class="modal-content">
+        <span class="close" id="closeLogoModal">&times;</span>
+        <h2>Додати логотип</h2>
+        <input type="text" id="adminCode" placeholder="Код адміністратора" required>
+        <input type="file" id="logoFile" accept="image/*" required>
+        <button id="saveLogoBtn">Зберегти</button    </div>
+</div>
+
+<footer class="footer">
+    <div class="contact-info">
+        <p>Сервісне обслуговування працює з 09:00 до 18:00</p>
+        <p><a href="tel:0933020138" style="color: white;">0933020138</a></p>
+        <p>Виробництво: Харків</p>
+    </div>
+    <div class="social-links">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+    </div>
+    <p>&copy; 2025 Виробник вбудованої побутової техніки, Україна, Харків.</p>
+</footer>
+
+<!-- Кнопка "Наверх" -->
+<button class="scroll-to-top" onclick="scrollToTop()">↑</button>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    // Відкриття модального вікна для реєстрації
+    document.getElementById('registerBtn').onclick = function() {
+        document.getElementById('registrationModal').style.display = "block";
+    };
+
+    // Закриття модального вікна реєстрації
+    document.getElementById('closeModal').onclick = function() {
+        document.getElementById('registrationModal').style.display = "none";
+    };
+
+    // Відкриття модального вікна для додавання логотипу
+    document.getElementById('addLogoBtn').onclick = function() {
+        document.getElementById('logoModal').style.display = "block";
+    };
+
+    // Закриття модального вікна для логотипу
+    document.getElementById('closeLogoModal').onclick = function() {
+        document.getElementById('logoModal').style.display = "none";
+    };
+
+    // Закриття модального вікна при натисканні поза ним
+    window.onclick = function(event) {
+        const registrationModal = document.getElementById('registrationModal');
+        const logoModal = document.getElementById('logoModal');
+        if (event.target == registrationModal) {
+            registrationModal.style.display = "none";
+        }
+        if (event.target == logoModal) {
+            logoModal.style.display = "none";
+        }
+    };
+
+    // Функція для збереження логотипів у localStorage
+    function saveLogosToLocalStorage(logos) {
+        localStorage.setItem('logos', JSON.stringify(logos));
+    }
+
+    // Функція для отримання логотипів з localStorage
+    function getLogosFromLocalStorage() {
+        const logos = localStorage.getItem('logos');
+        return logos ? JSON.parse(logos) : [];
+    }
+
+    // Функція для відображення логотипів
+    function displayLogos() {
+        const logoList = document.getElementById('logoList');
+        logoList.innerHTML = ''; // Очищення контейнера
+        const logos = getLogosFromLocalStorage();
+
+        if (logos.length === 0) {
+            logoList.innerHTML = '<p>Логотипи не знайдені.</p>'; // Повідомлення, якщо логотипів немає
+            return;
+        }
+
+        logos.forEach(logo => {
+            const logoItem = document.createElement('div');
+            logoItem.className = 'logo-item';
+
+            const img = document.createElement('img');
+            img.src = logo;
+            img.alt = 'Логотип';
+
+            const button = document.createElement('button');
+            button.className = 'remove-logo';
+            button.textContent = '×';
+            button.onclick = () => confirmDeleteLogo(button);
+
+            logoItem.appendChild(img);
+            logoItem.appendChild(button);
+            logoList.appendChild(logoItem);
+        });
+    }
+
+    // Додавання логотипу
+    document.getElementById('saveLogoBtn').onclick = function() {
+        const logoFile = document.getElementById('logoFile').files[0];
+        const adminCode = document.getElementById('adminCode').value;
+        const logos = getLogosFromLocalStorage();
+
+        // Перевірка коду адміністратора
+        if (adminCode !== "180569") {
+            alert('Неправильний код адміністратора. Доступ заборонено.');
+            return;
+        }
+
+        if (logoFile) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                logos.push(e.target.result); // Додаємо новий логотип
+                saveLogosToLocalStorage(logos); // Зберігаємо в localStorage
+                displayLogos(); // Оновлюємо відображення логотипів
+                document.getElementById('logoFile').value = ''; // Очищення поля вводу
+                document.getElementById('adminCode').value = ''; // Очищення поля коду
+                document.getElementById('logoModal').style.display = "none"; // Закриття модального вікна
+            };
+            reader.readAsDataURL(logoFile); // Читання файлу як URL
+        } else {
+            alert('Будь ласка, виберіть файл логотипу.');
+        }
+    };
+
+    // Функція для підтвердження видалення логотипу
+    function confirmDeleteLogo(button) {
+        const logoItem = button.parentElement;
+        const logos = getLogosFromLocalStorage();
+        const logoSrc = logoItem.querySelector('img').src;
+        const updatedLogos = logos.filter(logo => logo !== logoSrc); // Видаляємо логотип з масиву
+        saveLogosToLocalStorage(updatedLogos); // Оновлюємо localStorage
+        logoItem.remove(); // Видалення логотипу з DOM
+    }
+
+    // Завантаження логотипів при завантаженні сторінки
+    window.onload = function() {
+        displayLogos(); // Відображення логотипів
+    };
+
+    // Функція для кнопки "Наверх"
+    window.onscroll = function() {
+        const button = document.querySelector('.scroll-to-top');
+        if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+            button.style.display = "block";
+        } else {
+            button.style.display = "none";
+        }
+    };
+
+    function scrollToTop() {
+        window.scrollTo({top: 0, behavior: 'smooth'});
+    }
+
+    // Функція для калькулятора доставки
+    function calculateShipping() {
+        const weight = document.getElementById('weight').value;
+        const carrier = document.getElementById('carrier').value;
+
+        if (!weight || weight <= 0) {
+            alert('Будь ласка, введіть коректну вагу.');
+            return;
+        }
+
+        if (!carrier) {
+            alert('Будь ласка, виберіть перевізника.');
+            return;
+        }
+
+        let cost;
+        switch (carrier) {
+            case 'nova-poshta':
+                cost = weight * 10; // 10 грн за кг
+                break;
+            case 'ukrposhta':
+                cost = weight * 8; // 8 грн за кг
+                break;
+            case 'meest':
+                cost = weight * 12; // 12 грн за кг
+                break;
+            case 'delivery':
+                cost = weight * 15; // 15 грн за кг
+                break;
+            default:
+                cost = 0;
+        }
+
+        document.getElementById('shipping-cost').innerText = `Вартість доставки: ${cost} грн`;
+    }
+
+    // Обробка реєстрації
+    document.getElementById('registrationFormModal').onsubmit = function(event) {
+        event.preventDefault(); // Запобігання перезавантаженню сторінки
+        const name = document.getElementById('regName').value.trim();
+        const email = document.getElementById('regEmail').value.trim();
+        const password = document.getElementById('regPassword').value;
+
+        // Валідація
+        if (!name || !email || !password) {
+            alert('Будь ласка, заповніть всі поля.');
+            return;
+        }
+
+        // Перевірка формату електронної пошти
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailPattern.test(email)) {
+            alert('Будь ласка, введіть коректну електронну пошту.');
+            return;
+        }
+
+        // Перевірка наявності користувача
+        const users = JSON.parse(localStorage.getItem('users')) || [];
+        const existingUser = users.find(user => user.email === email);
+
+        if (existingUser) {
+            alert('Користувач з таким email вже існує.');
+        } else {
+            // Додавання нового користувача
+            users.push({ name, email, password });
+            localStorage.setItem('users', JSON.stringify(users));
+            alert('Реєстрація успішна!'); // Повідомлення про успішну реєстрацію
+            document.getElementById('registrationModal').style.display = "none"; // Закриття модального вікна
+            document.getElementById('registrationFormModal').reset(); // Очищення форми
+        }
+    };
+
+    // Додати товар до корзини (приклад)
+    function addToCart(product) {
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        cart.push(product);
+        localStorage.setItem('cart', JSON.stringify(cart));
+        alert(`${product.name} додано до корзини!`);
+    }
+
+    // Додати подію для тестування додавання товару
+    document.addEventListener('DOMContentLoaded', function() {
+        // Додати кнопку для тестування
+        const testButton = document.createElement('button');
+        testButton.innerText = "Додати товар до корзини";
+        testButton.onclick = function() {
+            const sampleProduct = { name: "Духова шафа", price: 5000 }; // Приклад товару
+            addToCart(sampleProduct);
+        };
+        document.body.appendChild(testButton);
+    });
+
+    // Відкриття банера гарантії
+    document.getElementById('guaranteeBtn').onclick = function() {
+        const guaranteeBanner = document.getElementById('guaranteeBanner');
+        guaranteeBanner.style.display = guaranteeBanner.style.display === "none" || guaranteeBanner.style.display === "" ? "block" : "none";
+    };
+
+    // Функція для розгортання/згортання відповідей на запитання
+    function toggleAnswer(questionElement) {
+        const answerElement = questionElement.nextElementSibling;
+        if (answerElement.style.display === "block") {
+            answerElement.style.display = "none";
+        } else {
+            answerElement.style.display = "block";
+        }
+    }
+
+    // Ініціалізація: приховати всі відповіді при завантаженні сторінки
+    document.querySelectorAll('.faq-answer').forEach(answer => {
+        answer.style.display = "none";
+    });
+</script>
+</body>
+</html>>
